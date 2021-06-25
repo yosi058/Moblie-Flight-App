@@ -1,11 +1,10 @@
 package com.example.flightgear_remote_contorl.view
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.SeekBar
-import android.widget.TextView
+import android.view.View
+import android.widget.*
 import com.example.flightgear_remote_contorl.R
 import com.example.remote_control_flightgear.view.ViewModel.ViewModel
 import java.lang.Exception
@@ -50,17 +49,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun connectServer() {
+        val massage = findViewById<View>(R.id.textView) as TextView
+        massage.textSize = 15F
         try {
             val ip = findViewById<EditText>(R.id.ip).text.toString()
-            val port = findViewById<TextView>(R.id.port).text.toString().toInt()
+            val port = findViewById<EditText>(R.id.port).text.toString().toInt()
             vm.connectServer(ip, port)
+            massage.setTextColor(Color.GREEN)
+            massage.text = "susses connect to server!!"
         } catch (e: Exception) {
+            massage.setTextColor(Color.RED)
+            massage.text = "Failed connect to server!!"
             e.printStackTrace()
         }
     }
 
     fun disConnectServer() {
-        vm.disconnectServer()
+        try {
+            val massage = findViewById<View>(R.id.textView) as TextView
+            massage.textSize = 15F
+            massage.setTextColor(Color.GREEN)
+            massage.text = "Dis conncet to the server!!"
+            vm.disconnectServer()
+
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
     }
 
 }

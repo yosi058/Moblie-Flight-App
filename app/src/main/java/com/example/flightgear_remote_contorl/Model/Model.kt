@@ -12,17 +12,17 @@ class Model() {
     private lateinit var socket: Socket
     private lateinit var printwritre: PrintWriter
     private val executor = Executors.newSingleThreadExecutor()
+
     @SuppressLint("SetTextI18n")
     fun connectFlightGear(ip: String, port: Int) {
         val connect = Runnable {
             try {
                 this.socket = Socket(ip, port)
-                println("Connect to server!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-                this.printwritre = PrintWriter(socket.getOutputStream(),true)
-            }catch (e:java.lang.Exception){
+                this.printwritre = PrintWriter(socket.getOutputStream(), true)
+            } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-            }
+        }
         executor.execute(connect)
     }
 
@@ -38,9 +38,11 @@ class Model() {
         }
         executor.execute(send)
     }
-    fun disconnectFlightGear(){
-        executor.shutdown()
-        this.socket.close()
+
+    fun disconnectFlightGear() {
         this.printwritre.close()
+        this.socket.close()
+        executor.shutdown()
+
     }
 }
