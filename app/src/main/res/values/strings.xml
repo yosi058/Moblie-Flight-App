@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FlightGear-Remote-Contorl</string>
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="enter_a_ip_address">Enter a ip address:</string>
+    <string name="enter_a_port_number">Enter a port number:</string>
+</resources>

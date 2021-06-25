@@ -1,0 +1,2 @@
+rootProject.name = "FlightGear-Remote-Contorl"
+include ':app'
