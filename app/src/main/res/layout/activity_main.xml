@@ -201,7 +201,7 @@
             android:layout_marginTop="52dp"
             android:ems="10"
             android:hint="@string/enter_a_ip_address"
-            android:inputType="text"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -213,7 +213,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/enter_a_port_number"
-            android:inputType="text"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ip" />
