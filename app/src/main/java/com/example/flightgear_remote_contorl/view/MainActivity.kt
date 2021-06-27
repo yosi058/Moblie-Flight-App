@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         val connect_button: Button = findViewById(R.id.connect_btn)
         connect_button.setOnClickListener { connectServer() }
         val dis_connect_button: Button = findViewById(R.id.disconnect_btn)
@@ -55,25 +54,45 @@ class MainActivity : AppCompatActivity() {
             val ip = findViewById<EditText>(R.id.ip).text.toString()
             val port = findViewById<EditText>(R.id.port).text.toString().toInt()
             vm.connectServer(ip, port)
+            massage.setBackgroundColor(Color.WHITE)
             massage.setTextColor(Color.GREEN)
-            massage.text = "susses connect to server!!"
+            massage.text = "Succeeded connect to the server!!"
+            change(massage)
         } catch (e: Exception) {
+            massage.setBackgroundColor(Color.BLACK)
             massage.setTextColor(Color.RED)
-            massage.text = "Failed connect to server!!"
+            massage.text = "    Failed connect to  the server!!"
+            change(massage)
             e.printStackTrace()
         }
     }
 
-    fun disConnectServer() {
-        try {
-            val massage = findViewById<View>(R.id.textView) as TextView
-            massage.textSize = 15F
-            massage.setTextColor(Color.GREEN)
-            massage.text = "Dis conncet to the server!!"
-            vm.disconnectServer()
+    fun change(msg: TextView) {
+        val connect = Thread({
+            Thread.sleep(3000)
+            msg.setBackgroundColor(Color.TRANSPARENT)
+            msg.text = ""
+        }
+        )
+        connect.start()
+    }
 
-        }catch (e:Exception){
+    fun disConnectServer() {
+        val massage = findViewById<View>(R.id.textView) as TextView
+        massage.textSize = 15F
+        try {
+            massage.setBackgroundColor(Color.WHITE)
+            massage.setTextColor(Color.GREEN)
+            massage.text = "Dis connect to the server succeeded!!"
+            vm.disconnectServer()
+            change(massage)
+
+        } catch (e: Exception) {
+            massage.setBackgroundColor(Color.BLACK)
+            massage.setTextColor(Color.RED)
+            massage.text = " Failed Dis connect to the server !!"
             e.printStackTrace()
+
         }
     }
 

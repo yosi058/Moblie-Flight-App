@@ -42,7 +42,7 @@ class Model() {
     fun disconnectFlightGear() {
         this.printwritre.close()
         this.socket.close()
-        executor.shutdown()
+        //executor.shutdown()
 
     }
 }
