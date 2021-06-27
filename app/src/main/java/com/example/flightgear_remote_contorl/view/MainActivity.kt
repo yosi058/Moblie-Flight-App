@@ -55,8 +55,15 @@ class MainActivity : AppCompatActivity() {
             val port = findViewById<EditText>(R.id.port).text.toString().toInt()
             vm.connectServer(ip, port)
             massage.setBackgroundColor(Color.WHITE)
-            massage.setTextColor(Color.GREEN)
-            massage.text = "Succeeded connect to the server!!"
+
+            if(vm.getSucceeded()) {
+                massage.setTextColor(Color.GREEN)
+                massage.text = "Succeeded connect to the server!"
+            }else{
+                massage.setBackgroundColor(Color.BLACK)
+                massage.setTextColor(Color.RED)
+                massage.text = "    Failed connect to  the server!"
+            }
             change(massage)
         } catch (e: Exception) {
             massage.setBackgroundColor(Color.BLACK)

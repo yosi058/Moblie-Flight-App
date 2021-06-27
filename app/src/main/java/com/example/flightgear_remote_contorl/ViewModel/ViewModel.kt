@@ -28,6 +28,9 @@ class ViewModel() {
         model.sendData(command)
 
     }
+    fun getSucceeded(): Boolean {
+        return model.getSucceeded()
+    }
     fun disconnectServer(){
         model.disconnectFlightGear()
     }

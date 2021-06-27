@@ -9,6 +9,7 @@ import java.util.concurrent.Executors
 
 class Model() {
 
+    private var Succeeded: Boolean = false
     private lateinit var socket: Socket
     private lateinit var printwritre: PrintWriter
     private val executor = Executors.newSingleThreadExecutor()
@@ -19,11 +20,18 @@ class Model() {
             try {
                 this.socket = Socket(ip, port)
                 this.printwritre = PrintWriter(socket.getOutputStream(), true)
+                this.Succeeded = true
             } catch (e: java.lang.Exception) {
+                this.Succeeded = false
                 e.printStackTrace()
+
             }
         }
         executor.execute(connect)
+    }
+
+    fun getSucceeded(): Boolean {
+        return this.Succeeded
     }
 
     fun sendData(command: String) {
